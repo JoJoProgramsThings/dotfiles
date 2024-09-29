@@ -1,0 +1,13 @@
+bat
+cmatrix
+eza
+fd
+fzf
+oh-my-posh
+ripgrep
+stow
+tree
+zinit
+zoxide
+zsh-you-should-use
+font-agave-nerd-font
