@@ -1,0 +1,54 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .UserName }} at {{ .PWD }}'
+
+[transient_prompt]
+  foreground = 'blue'
+  background = 'transparent'
+  template = '$'
+
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = '  {{path .Path .Location}}'
+    background = 'transparent'
+    foreground = 'white'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'darkGray'
+    background = 'transparent'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+      
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    template = ' $'
+    background = 'transparent'
+    foreground = 'blue'
+

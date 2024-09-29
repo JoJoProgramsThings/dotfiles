@@ -1,0 +1,6 @@
+alias ls='eza --icons=always -1 --color=always --group-directories-first'
+alias lsa='ls -a'
+alias lss='/bin/ls'
+alias bat='bat --paging=never'
+alias reload='source ~/.zshrc'
+
