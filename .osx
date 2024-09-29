@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+
+
+
+# General
+###########################
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# quit printer app when print jobs is finished
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Animation Effects
+defaults write com.apple.dock "mineffect" -string "scale"
+
+# Disable App Rating requests
+defaults write com.apple.appstore InAppReviewEnabled -int 0
+
+# Restart automatically if the computer freezes
+if [[ "$RUN_AS_ROOT" = true ]]; then
+  systemsetup -setrestartfreeze on
+fi
+
+
+
+# Dock
+###########################
+
+# Dock Size
+defaults write com.apple.dock tilesize -int 55
+
+# Dock Position
+defaults write com.apple.dock orientation -string "bottom"
+
+# Not showing recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+
+# Minimizing Applications into their icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+
+
+# Hot Corners
+###########################
+
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+
+# Top Left: Put Display to Sleep
+defaults write com.apple.dock wvous-tl-corner -int 10
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# Bottom Left: Desktop
+defaults write com.apple.dock wvous-bl-corner -int 4
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+#Bottom Right: Mission Control
+defaults write com.apple.dock wvous-br-corner -int 2
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+
+
+# Finder
+###########################
+
+# Show hidden files by default
+#defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Search in current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Not saving on iCloud
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+
+# Restart
+###########################
+for app in "Dock" "Finder" "SystemUIServer"; do
+    killall "${app}" > /dev/null 2>&1
+done
