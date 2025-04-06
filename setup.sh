@@ -14,3 +14,4 @@ done
 # Reload shell once installed
 echo "[+] Reloading shell..."
 exec $SHELL -l
+reload
